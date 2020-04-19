@@ -1,0 +1,10 @@
+setcps (125/60/2)
+
+-- groove 1
+
+d1 $ stack [
+    s "co*2" # n "0 1" # gain 0.7
+    , degrade $ s "dr*8" # n (irand 30) # cut 5 # gain 0.5 # pan tri
+    , s "clubkick*2" # gain 0.9
+    , s "~ electro1" # n 11 # gain 1.1 # speed 1.1
+]
