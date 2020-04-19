@@ -6,7 +6,7 @@ d1 $ stack [
     s "co*2" # n "0 1" # gain 0.7
     , degrade $ s "dr*8" # n (irand 30) # cut 5 # gain 0.5 # pan tri
     , s "clubkick*2" # gain 0.9
-    , s "~ electro1" # n 11 # gain 1.1 # speed 1.1
+    , s "~ electrso1" # n 11 # gain 1.1 # speed 1.1
 ]
 
 -- groove 2
@@ -18,7 +18,7 @@ d1 $ stack [
         $ s "breaks165"
         # cut 1 
         # krush 4
-        # gain 0.5
+        # gain 0.6
         # speed 1
     , struct "00010010"
     $ s "gretsch"
@@ -31,3 +31,24 @@ d1 $ stack [
         # speed 1.2    
     , s "house*2"
 ]
+
+
+-- funky
+
+setcps (90/60/2)
+
+d1 $ swingBy (0.18) 4 $ stack [
+    struct "101?<1001>000<0001>" $ someCycles (palindrome) $ s "gretsch" # n 13
+    , sometimesBy 0.01 ( (# n 17) . (# legato 2) ) $ s "gretsch*8" # n "<5 5 5 [5 6]>" # gain "1 0.9 1 0.95" |-| gain 0.2 # cut 2
+    , sometimesBy 0.3 (stut 4 0.5 0.125) $ s "~ gretsch" # n 22
+]
+
+-- hiphop version
+
+setcps (90/60/2)
+
+d1 $ swingBy (0.05) 4 $ stack [
+    struct "101?<1001>000<0001>" $ someCycles (palindrome) $ s "hh" # n 5
+    , sometimesBy 0.01 ( (# n 7) . (# legato 2) ) $ s "hh*8" # n "<0 0 0 [0 [8 7]]>" # gain "1 0.9 1 0.95" |-| gain 0.2 # cut 2
+    , s "~ hh" # n 11
+] # krush 2
