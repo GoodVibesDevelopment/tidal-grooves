@@ -11,29 +11,23 @@ d1 $ stack [
 
 -- groove 2
 
-setcps (122/60/2)
+setcps (118/60/2)
 
-p 100
-    $ loopAt 2
-    $ s "breaks165"
-    # cut 1 
-    # krush 4
-    # gain 0.7
-    # speed 1
-
-d8
-    $ struct "00010010"
-    $ s "808sd"
-    # n 1
-    # crush 4
-    # cut 4
-
-d3
-    $ fast 2
-    $ s "~ 808:4"
-    # gain 1
-    # speed 1.2    
-
-d2
-    $ s "clubkick*2"
-    # lpf 2000
+d1 $ stack [
+    loopAt 2
+        $ s "breaks165"
+        # cut 1 
+        # krush 4
+        # gain 0.5
+        # speed 1
+    , struct "00010010"
+    $ s "gretsch"
+        # n 2
+        # cut 4
+        # krush 2
+    , fast 2
+        $ s "~ 808:4"
+        # gain 1
+        # speed 1.2    
+    , s "house*2"
+]
