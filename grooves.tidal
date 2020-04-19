@@ -23,7 +23,7 @@ d1 $ stack [
     , struct "00010010"
     $ s "gretsch"
         # n 2
-        # cut 4ķ
+        # cut 4
         # krush 2
     , fast 2
         $ s "~ 808:4"
