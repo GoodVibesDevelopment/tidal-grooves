@@ -8,3 +8,32 @@ d1 $ stack [
     , s "clubkick*2" # gain 0.9
     , s "~ electro1" # n 11 # gain 1.1 # speed 1.1
 ]
+
+-- groove 2
+
+setcps (122/60/2)
+
+p 100
+    $ loopAt 2
+    $ s "breaks165"
+    # cut 1 
+    # krush 4
+    # gain 0.7
+    # speed 1
+
+d8
+    $ struct "00010010"
+    $ s "808sd"
+    # n 1
+    # crush 4
+    # cut 4
+
+d3
+    $ fast 2
+    $ s "~ 808:4"
+    # gain 1
+    # speed 1.2    
+
+d2
+    $ s "clubkick*2"
+    # lpf 2000
