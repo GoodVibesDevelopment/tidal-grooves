@@ -23,7 +23,7 @@ d1 $ stack [
     , struct "00010010"
     $ s "gretsch"
         # n 2
-        # cut 4
+        # cut 4ķ
         # krush 2
     , fast 2
         $ s "~ 808:4"
@@ -51,4 +51,17 @@ d1 $ swingBy (0.05) 4 $ stack [
     struct "101?<1001>000<0001>" $ someCycles (palindrome) $ s "hh" # n 5
     , sometimesBy 0.01 ( (# n 7) . (# legato 2) ) $ s "hh*8" # n "<0 0 0 [0 [8 7]]>" # gain "1 0.9 1 0.95" |-| gain 0.2 # cut 2
     , s "~ hh" # n 11
-] # krush 2
+] # krush 4
+
+
+-- hiphop beat, inspired by https://www.youtube.com/watch?v=lZ8zu1aRYA8
+
+setcps (82/60/2)
+
+d1 $ stack [
+    struct "1 <0 0 0 1> 0 [0 0 1]" $ s "gretsch:13"
+    , s "~ ifdrums" # n 2 # gain 0.9 # legato 0.3
+    , s "~ hh27?" # n 7 # legato 0.4
+    , (0.01 ~>) $ swingBy (0.08) 2 $ s "hc*4" # n 1 # gain 0.7
+    , loopAt 2 $ s "breaks165" # cut 7 # bpf 900 # gain 0.7
+] # krush 1
