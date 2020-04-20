@@ -65,3 +65,15 @@ d1 $ stack [
     , (0.01 ~>) $ swingBy (0.08) 2 $ s "hc*4" # n 1 # gain 0.7
     , loopAt 2 $ s "breaks165" # cut 7 # bpf 900 # gain 0.7
 ] # krush 1
+
+
+-- trap
+
+setcps (68/60/2)
+
+d1 $ stack [
+     struct "1 0 [11]? 0 0 0 0 [0 1?]" $ s "808bd" # n 1 # krush 4 # cut 1 # note "<0 0 0 <0 12>>"
+    , s "~ 808sd" # n 19
+    , s "~ 808" # n 3 # crush 4
+    , sometimesBy 0.1 (fast 2) $ every 13 ((fast 2) . (# speed (range 0.5 1.5 sine))) $ s "808*8" # n 1 # room 0.05 # orbit 2
+] # krush 1
