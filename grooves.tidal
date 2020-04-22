@@ -88,5 +88,17 @@ d1 $ stack [
     , s "~ dr2:1" # crush 8
     , every (slow 2 $ "<0 1>") (# n (fast 2 $ "0 0 4 ~")) $ fast 8 $ s "dr2" # gain 0.7 # cut 3 # pan 0.6
     , slow 4 $ s "dr2:2" # pan 0.4 # gain 0.8
-    , sometimesBy 0.2 ( (stut 3 0.7 0.0625) . (0.25 <~) ) $ struct (binary(75)) $ s "dr2:5" # gain 0.8
+    , slow 4 $ every 4 (# gain 0.8) $ fast 4 $ sometimesBy 0.2 ( (stut 3 0.7 0.0625) . (0.25 <~) ) $ struct (binary(75)) $ s "dr2:5" # gain 0
+]
+
+
+---
+
+setcps (110/60/2)
+
+d1 $ stack [
+    s "tabla" # n 2 # cut 1
+    , degrade $ s "tabla*8" # n (choose[9, 10, 11, 12, 13]) # pan sine
+    , s "tabla(3,8)" # n "<18 18 25 25>" # pan 0.75 # gain 0.9
+    , ("<0.25 0.25 0.75>" ~>) $ s "tabla(3,8)" # n 6 # pan 0.25 # cut 2 # bpf (slow 8 $ range 500 4500 sine)
 ]
