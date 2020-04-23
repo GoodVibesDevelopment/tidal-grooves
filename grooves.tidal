@@ -108,9 +108,9 @@ d1 $ stack [
 setcps (90/60/2)
 
 d1 $ stack [
-    struct "10100" $ s "hh" # n 6
+    struct "1010<0@7 [01]>" $ s "hh" # n 6
     , struct (cat ["00010", "0001<1@3 [11]>"]) $ s "hh" # 11 # cut 2
-    , slow 2 $ swingBy (0.05) 2 $ s "hh*5" # n "0 <0@3 7> 0 0 0" # cut 3 # gain "0.8 0.9 0.8 1 0.8"
+    , slow <2@8 1@8> $ swingBy (0.05) 2 $ s "hh*5" # n "0 <0@3 7> 0 0 0" # cut 3 # gain "0.8 0.9 0.8 1 0.8"
     , slow 16 $ s "hh:1" # gain 0.9 # pan 0.8
     , slow 2 $ s "<hh:9 hh:8>" # pan "<0 1>" # gain 0.7
 ]
