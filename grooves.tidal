@@ -114,3 +114,17 @@ d1 $ stack [
     , slow 16 $ s "hh:1" # gain 0.9 # pan 0.8
     , slow 2 $ s "<hh:9 hh:8>" # pan "<0 1>" # gain 0.7
 ]
+
+-- break
+
+setcps(170/60/4)
+
+
+d1 $ stack [
+    loopAt 1
+        $ sometimesCyclesBy 0.3 ( (slow 2) . (stut' 4 0.0625 (|*| speed 1.2)) ) 
+        $ slice 8 "0 .. 7"
+        $ s "breaks165"
+        # cut 1 
+        # gain 1
+]
