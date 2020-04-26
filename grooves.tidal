@@ -122,9 +122,28 @@ setcps(170/60/4)
 
 d1 $ stack [
     loopAt 1
-        $ sometimesCyclesBy 0.3 ( (slow 2) . (stut' 4 0.0625 (|*| speed 1.2)) ) 
+        $ someCyclesBy 0.3 ( (slow 2) . (stut' 4 0.0625 (|*| speed 1.2)) ) 
         $ slice 8 "0 .. 7"
         $ s "breaks165"
         # cut 1 
         # gain 1
+]
+
+
+-- 
+
+setcps(132/60/4)
+
+d1 $ stack [
+    loopAt 2
+      $ palindrome 
+      $ slice 8 "2 2 4 <[44] 4> 5 6 0 <1 [11]>"
+      $ s "alex" # gain 0.9
+      , s "~ cp ~ ~ ~ ~ cp ~"
+      , s "bin(3,8,<2 3>)" # pan 0.25
+      , slow 4 $ stut' 5 0.24 (|*| gain 0.9) $ s "~ ~ ~ can" # pan 0.8 # n (irand 13) # cut 4
+      , slow 8 $ s "~ ~ ~ ~ ~ ~ ~ ~ [~ d:3*8]" # cut 5 # speed 2 # pan sine
+      , slow 4 $ struct (ascii("yolo")) $ s "dr:1" # bpf 400
+      , slow 8 $ s "cr" # gain 0.8 # pan 0.55
+      , fast 2 $ s "electro1(3,8)" # n 9 # pan (slow 2 $ tri) # crush 8 # room 0.25 # orbit 3 # gain "<0@8 1.2@4>"
 ]
