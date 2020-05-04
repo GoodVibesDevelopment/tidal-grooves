@@ -9,6 +9,8 @@ d1 $ stack [
     , s "~ electrso1" # n 11 # gain 1.1 # speed 1.1
 ]
 
+d1 $ sound "bd*3"
+
 -- groove 2
 
 setcps (118/60/2)
@@ -148,12 +150,33 @@ d1 $ stack [
       , fast 2 $ s "electro1(3,8)" # n 9 # pan (slow 2 $ tri) # crush 8 # room 0.25 # orbit 3 # gain "<0@8 1.2@4>"
 ]
 
--- 
+-- some weirds stuff with reverting
 
 setcps(130/60/2)
 
 d1 $ stack [
-    rev $ chop "<1 1 1 [1 8]>" $ s "clubkick*2"
-    , every 3 (rev) $ chop "<1 [1 16]>" $ s "~ cp:4"
-    , chop "<1 [1 16]>" $ s "[~ ho]*2" # gain 0.9 # pan rand
+    rev $ chop "<1 1 1 [1 1 1 8]>" $ s "clubkick*<2@3 4>"
+    , every 4 (rev) $ chop "<1 [1 16]>" $ s "~ cp:4"
+   , chop "<1 [1 16]>" $ s "[~ ho]*2" # gain 0.9 # pan rand
+]
+
+-- splice in action
+
+setcps(96/60/2)
+
+d1 $ slow 2 $ stack [
+    splice 8 "[0 3]*4" $  s "breaks165",
+    splice 8 "[~ 2]*2" $ s "breaks165",
+    s "house*4"
+]
+
+-- e-bossa
+
+setcps(82/60/2)
+
+d1 $ stack [
+    struct "1001" $ s "feel" # lpf 800
+    , sometimesBy 0.2 (fast 2) $ s "hh27*4" # n "1" # speed (range 0.97 1 sine)
+    , s (cat (["east(3,8)", " ~ east:1 east:2 ~"])) # speed (slow 4 $ range 0.95 1 sine) # pan rand
+    , slow 4 $ rev $ chop 16 $ s "~ ~ ~ ~ 808"
 ]
