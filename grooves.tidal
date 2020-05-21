@@ -13,7 +13,7 @@ d1 $ sound "bd*3"
 
 -- groove 2
 
-setcps (118/60/2)
+setcps (118/60/ 2)
 
 d1 $ stack [
     loopAt 2
@@ -179,7 +179,7 @@ d1 $ stack [
     , sometimesBy 0.2 (fast 2) $ s "hh27*4" # n "1" # speed (range 0.97 1 sine)
     , s (cat (["east(3,8)", " ~ east:1 east:2 ~"])) # speed (slow 4 $ range 0.95 1 sine) # pan rand
     , slow 4 $ rev $ chop 16 $ s "~ ~ ~ ~ 808"
-    , struct "1001" $ note "<c g4>" # s "bass" |+| note "<0!4 3!2 2!2>"
+    -- , struct "1001" $ note "<c g4>" # s "bass" |+| note "<0!4 3!2 2!2>"
 ]
 
 -- 
@@ -199,7 +199,7 @@ d1 $ stack [
 setcps(96/60/2)
 
 
-d1 $ whenmod 16 15 (const $ struct "11[11]1[11]1[1][111]" $ s "house" # n "0 1 1 3" # cut 1) 
+d1 $ whenmod 16 15 (const $ struct "11[11]1[11]11[11]" $ s "house" # n "0 1 3 7" # cut 1) 
    $ stack [
     struct "<1 1 1 0>000000<0001>" $ s "feel"
     , struct "0<0!3 1>00100<0!2 1 0>" $ s "jungle" # n 11 # gain 1.2
@@ -210,5 +210,25 @@ d1 $ whenmod 16 15 (const $ struct "11[11]1[11]1[1][111]" $ s "house" # n "0 1 1
         $ n (fit 3 [0 .. 11] "[0 1] [~ 1] 2? 1") 
         # s "east"
         # gain 0.6
-    , slow 1.5 $ note (arp "<up>" "d e f g a e6") # s "supersaw" # attack 0.9 # cut 8 |- note "12" # bpf 1000
-] # orbit 0 # krush 2
+    --- , slow 1.5 $ note (arp "<up>" "d e f g a e6") # s "supersaw" # attack 0.9 # cut 8 |- note "12" # bpf 1000 # pan "<0.25 0.75>"
+] # orbit 0
+
+
+---
+
+setcps(0.65)
+
+d1 $ stack [
+  slow 16 $ n "<0 4 2 1>" # s "cc" # gain 0.6
+  , n "0 .. 4" # s "chin"
+  , whenmod 16 8 (stut' 3 0.125 (|* gain 0.9) . (|* speed 2)) $ n "<1 0> ~ ~ 3 ~ [~ 4] 5 ~" # s "can" # pan sine # speed 1
+  , slow 2 $ s "~ [~ coins]"
+  , n (fit 1 [3] "0 ~ ~ 0 ~ ~ [0 0]?0.8 [0 0]?0.8") # s "dr2"
+  , n "~ [~ 0] 11 [0 0]" # s "dr2 dr!3"
+  , whenmod 16 12 (# gain 0.7) $ fast 1 $ s "glitch2(3,8,1)" # n 7 # speed (slow 4 $ range 1 2 sine) # pan "0.4 0.6" # gain 0
+  , chop "<8!3 [8 12]>" $ n "2" # s "glitch2"
+  , struct (binary 43) $ s "hand" # n 7 # pan saw
+  , struct "<0!2 [~ ~ ~ ~ ~ ~ ~ 1] [~ 1 ~ ~ ~ ~ ~ 1]>" $ s "jazz" # n 4 # crush "<~ 12 4 10>"
+  , whenmod 32 24 (# gain 0.7) $ degrade $ s "tink*16" # cut 4 # n (irand 1) # attack 0.02 # speed (range 1 1.02 sine) # pan (slow 4 $ sine) # gain 0
+  , struct "<0!31 1*12>" $ s "techno" # n 4
+]  # orbit 1 
